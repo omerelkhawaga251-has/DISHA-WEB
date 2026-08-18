@@ -10,15 +10,15 @@ interface TiltCardProps {
   glareEffect?: boolean;
   scaleOnHover?: number;
   onClick?: () => void;
-  cursorType?: 'video' | 'image' | 'pointer';
+  cursorType?: 'video' | 'image' | 'pointer' | 'reel';
 }
 
 export default function TiltCard({
   children,
   className = '',
-  maxTilt = 12,
+  maxTilt = 10,
   glareEffect = true,
-  scaleOnHover = 1.02,
+  scaleOnHover = 1.025,
   onClick,
   cursorType,
 }: TiltCardProps) {
@@ -26,10 +26,7 @@ export default function TiltCard({
   const [isHovered, setIsHovered] = useState(false);
   const [glarePosition, setGlarePosition] = useState({ x: 50, y: 50 });
 
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const springConfig = { damping: 20, stiffness: 260, mass: 0.3 };
+  const springConfig = { damping: 22, stiffness: 280, mass: 0.25 };
   const rotateX = useSpring(useMotionValue(0), springConfig);
   const rotateY = useSpring(useMotionValue(0), springConfig);
 
@@ -80,17 +77,19 @@ export default function TiltCard({
         transformStyle: 'preserve-3d',
       }}
       whileHover={{ scale: scaleOnHover }}
-      transition={{ duration: 0.2 }}
-      className={`relative perspective-1000 select-none ${className}`}
+      transition={{ duration: 0.25, ease: 'easeOut' }}
+      className={`relative select-none ${className}`}
     >
-      {children}
+      <div style={{ transformStyle: 'preserve-3d' }} className="w-full h-full">
+        {children}
+      </div>
 
-      {/* Dynamic Glare Reflection Overlay */}
+      {/* Dynamic Specular Glare Reflection */}
       {glareEffect && isHovered && (
         <div
-          className="absolute inset-0 pointer-events-none rounded-2xl overflow-hidden transition-opacity duration-300 opacity-60 z-20"
+          className="absolute inset-0 pointer-events-none rounded-[inherit] overflow-hidden transition-opacity duration-300 opacity-50 z-30"
           style={{
-            background: `radial-gradient(circle at ${glarePosition.x}% ${glarePosition.y}%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 65%)`,
+            background: `radial-gradient(circle at ${glarePosition.x}% ${glarePosition.y}%, rgba(249,115,22,0.25) 0%, rgba(255,255,255,0.15) 30%, transparent 65%)`,
           }}
         />
       )}
