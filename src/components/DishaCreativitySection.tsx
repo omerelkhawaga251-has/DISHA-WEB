@@ -17,14 +17,14 @@ export default function DishaCreativitySection({
     <section id="creativity" className="py-20 px-4 sm:px-6 max-w-7xl mx-auto relative z-10">
       {/* Header */}
       <div className="text-center mb-14">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-500/20 text-orange-400 text-xs font-mono font-bold uppercase tracking-widest mb-3 border border-orange-500/30">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-500/20 text-orange-400 text-xs font-mono font-bold uppercase tracking-widest mb-4 border border-orange-500/30 shadow-[0_0_20px_rgba(249,115,22,0.2)]">
           <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-spin-slow" />
-          <span>DISHA CREATIVITY // مساحة الإبداع الفني</span>
+          <span>FEATURED ARTWORK & THUMBNAILS</span>
         </div>
-        <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
-          ديشا كرياتيفيتي (DISHA CREATIVITY)
+        <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight uppercase font-display bg-gradient-to-r from-white via-orange-100 to-amber-400 bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(249,115,22,0.3)]">
+          DISHA CREATIVITY
         </h2>
-        <p className="text-stone-400 text-sm sm:text-base max-w-2xl mx-auto mt-2 font-arabic">
+        <p className="text-stone-400 text-sm sm:text-base max-w-2xl mx-auto mt-3 font-arabic" dir="rtl">
           مختارات من أفضل وأقوى التصاميم والثمبنيلات التي صممتها بعناية فائقة لتصنع فارقاً حقيقياً في معدل النقر CTR والانتشار.
         </p>
       </div>

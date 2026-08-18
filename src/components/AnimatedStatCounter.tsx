@@ -24,10 +24,13 @@ export default function AnimatedStatCounter({
   const isPercent = targetValue.includes('%');
   const isPlus = targetValue.startsWith('+');
   const isM = targetValue.includes('M');
+  const isK = targetValue.includes('K') || targetValue.includes('k');
 
   let numericTarget = 0;
   if (isM) {
     numericTarget = 2;
+  } else if (isK) {
+    numericTarget = parseInt(targetValue.replace(/\D/g, ''), 10) || 15;
   } else if (isPercent) {
     numericTarget = 100;
   } else if (isPlus) {
@@ -61,6 +64,7 @@ export default function AnimatedStatCounter({
   const formatDisplay = () => {
     if (!isInView) return '0';
     if (isM) return `+${displayCount}M`;
+    if (isK) return `+${displayCount}K`;
     if (isPercent) return `${displayCount}%`;
     if (isPlus) return `+${displayCount}`;
     return `${displayCount}`;

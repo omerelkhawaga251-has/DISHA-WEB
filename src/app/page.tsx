@@ -70,7 +70,7 @@ import TiltCard from '@/components/TiltCard';
 export default function Home() {
   const [activeVideoProject, setActiveVideoProject] = useState<ProjectItem | null>(null);
   const [activeLightboxProject, setActiveLightboxProject] = useState<ProjectItem | null>(null);
-  const [mainTab, setMainTab] = useState<'all' | 'videos' | 'designs'>('all');
+  const [mainTab, setMainTab] = useState<'videos' | 'designs'>('videos');
   const [filterCategory, setFilterCategory] = useState<string>('all');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -477,7 +477,7 @@ export default function Home() {
       </motion.section>
 
       {/* ──────────────────────────────────────────────────────────────
-          STAGE 05: MAIN GALLERY HUB (ALL PROJECTS MATRIX)
+          STAGE 05: MAIN GALLERY HUB (2 DEDICATED SECTIONS: VIDEOS & DESIGNS)
           ────────────────────────────────────────────────────────────── */}
       <motion.section
         id="work"
@@ -487,118 +487,80 @@ export default function Home() {
         variants={scrollSectionVariant}
         className="py-20 px-4 sm:px-6 max-w-7xl mx-auto relative z-10"
       >
-        {/* Hub Switcher Bar */}
-        <div className="p-3 bg-stone-950/80 backdrop-blur-2xl text-white rounded-3xl border border-stone-800 shadow-2xl mb-12 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 p-1.5 bg-stone-900 rounded-2xl border border-stone-800 w-full md:w-auto">
-            <button
-              onClick={() => {
-                setMainTab('all');
-                setFilterCategory('all');
-              }}
-              className={`flex-1 md:flex-initial px-6 py-3 rounded-xl text-xs font-bold transition-all ${
-                mainTab === 'all'
-                  ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/40'
-                  : 'text-stone-400 hover:text-white'
-              }`}
-            >
-              كافة الأعمال ({PORTFOLIO_PROJECTS.length})
-            </button>
+        {/* Section Header */}
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-500/20 text-orange-400 text-xs font-mono font-bold uppercase tracking-wider mb-3 border border-orange-500/30">
+            <Film className="w-3.5 h-3.5" />
+            <span>PORTFOLIO SECTIONS // معرض الأعمال</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
+            {mainTab === 'videos'
+              ? 'معرض مقاطع الفيديو والريلز'
+              : 'معرض تصاميم الصور والثمبنيلات'}
+          </h2>
+          <p className="text-stone-400 text-sm sm:text-base max-w-xl mx-auto mt-2 font-arabic" dir="rtl">
+            {mainTab === 'videos'
+              ? 'فيديوهات يوتيوب كاملة وشورتس وريلز جاهزة للمشاهدة المباشرة بالثمبنيلات الأصلية'
+              : 'شرح تحليلي لكل صورة وثمبنيل يوضح تقنيات التصميم، الدمج بالفوتوشوب، وسر رفع الـ CTR'}
+          </p>
+        </div>
 
+        {/* 2 Dedicated Tabs Only */}
+        <div className="p-3 bg-stone-950/80 backdrop-blur-2xl text-white rounded-3xl border border-stone-800 shadow-2xl mb-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="grid grid-cols-2 gap-2 p-1.5 bg-stone-900 rounded-2xl border border-stone-800 w-full sm:w-auto">
+            {/* TAB 1: VIDEOS */}
             <button
-              onClick={() => {
-                setMainTab('videos');
-                setFilterCategory('all');
-              }}
-              className={`flex-1 md:flex-initial px-6 py-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
+              onClick={() => setMainTab('videos')}
+              className={`px-6 sm:px-8 py-3.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2.5 ${
                 mainTab === 'videos'
                   ? 'bg-red-600 text-white shadow-lg shadow-red-600/40'
                   : 'text-stone-400 hover:text-white'
               }`}
             >
               <Youtube className="w-4 h-4" />
-              <span>فيديوهات اليوتيوب والريلز ({VIDEO_PROJECTS.length})</span>
+              <span>1. مقاطع الفيديو والريلز ({VIDEO_PROJECTS.length})</span>
             </button>
 
+            {/* TAB 2: DESIGNS */}
             <button
-              onClick={() => {
-                setMainTab('designs');
-                setFilterCategory('all');
-              }}
-              className={`flex-1 md:flex-initial px-6 py-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
+              onClick={() => setMainTab('designs')}
+              className={`px-6 sm:px-8 py-3.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2.5 ${
                 mainTab === 'designs'
                   ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/40'
                   : 'text-stone-400 hover:text-white'
               }`}
             >
               <Palette className="w-4 h-4" />
-              <span>الصور والثمبنيلات ({DESIGN_PROJECTS.length})</span>
+              <span>2. تصاميم الصور والثمبنيلات ({DESIGN_PROJECTS.length})</span>
             </button>
           </div>
 
           <div className="flex items-center gap-3">
-            <Link
-              href="/videos"
-              className="text-xs font-bold text-red-400 hover:text-red-300 flex items-center gap-1 bg-stone-900 px-4 py-2.5 rounded-xl border border-stone-800"
-            >
-              <span>صفحة الفيديوهات المستقلة</span>
-              <ArrowRight className="w-3.5 h-3.5 rotate-180" />
-            </Link>
-            <Link
-              href="/designs"
-              className="text-xs font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1 bg-stone-900 px-4 py-2.5 rounded-xl border border-stone-800"
-            >
-              <span>صفحة التصاميم المستقلة</span>
-              <ArrowRight className="w-3.5 h-3.5 rotate-180" />
-            </Link>
+            {mainTab === 'videos' ? (
+              <Link
+                href="/videos"
+                className="text-xs font-bold text-red-400 hover:text-red-300 flex items-center gap-1.5 bg-stone-900 px-5 py-3 rounded-xl border border-stone-800"
+              >
+                <span>فتح صفحة الفيديوهات المستقلة</span>
+                <ArrowRight className="w-3.5 h-3.5 rotate-180" />
+              </Link>
+            ) : (
+              <Link
+                href="/designs"
+                className="text-xs font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1.5 bg-stone-900 px-5 py-3 rounded-xl border border-stone-800"
+              >
+                <span>فتح صفحة التصاميم المستقلة</span>
+                <ArrowRight className="w-3.5 h-3.5 rotate-180" />
+              </Link>
+            )}
           </div>
-        </div>
-
-        {/* Header & Sub-Category Filters */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div>
-            <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
-              {mainTab === 'videos'
-                ? 'فيديوهات اليوتيوب وشورتس وريلز'
-                : mainTab === 'designs'
-                ? 'الصور المصغرة والبوسترات الفنية'
-                : 'شبكة المعرض وكافة المشاريع'}
-            </h2>
-            <p className="text-stone-400 text-sm mt-1 font-arabic">
-              {mainTab === 'videos'
-                ? 'مجهزة بالثمبنيلات الأصلية من YouTube ومتاحة للتشغيل الفوري داخل الموقع'
-                : 'اضغط على أي مشروع لتكبيره بالدقة الكاملة أو مشاهدة تفاصيل المونتاج'}
-            </p>
-          </div>
-
-          {/* Sub-Filters */}
-          {mainTab === 'all' && (
-            <div className="flex items-center gap-2 flex-wrap">
-              {[
-                { id: 'all', label: 'الكل' },
-                { id: 'short', label: 'شورتس وريلز ⚡' },
-                { id: 'youtube', label: 'فيديوهات يوتيوب 🎬' },
-                { id: 'thumbnail', label: 'ثمبنيلات 🎨' },
-              ].map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setFilterCategory(cat.id)}
-                  className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all ${
-                    filterCategory === cat.id
-                      ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/30'
-                      : 'bg-stone-900 text-stone-300 border border-stone-800 hover:border-orange-500 hover:text-orange-400'
-                  }`}
-                >
-                  {cat.label}
-                </button>
-              ))}
-            </div>
-          )}
         </div>
 
         {/* Projects Interactive Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, idx) => {
+            {(mainTab === 'videos' ? VIDEO_PROJECTS : DESIGN_PROJECTS).map((project, idx) => {
+              const isVideoMode = mainTab === 'videos';
               const hasVideo = !!project.videoUrl;
               const isReel = project.videoUrl?.includes('instagram.com') || project.videoUrl?.includes('shorts');
 
@@ -614,14 +576,18 @@ export default function Home() {
                   <TiltCard
                     maxTilt={12}
                     scaleOnHover={1.03}
-                    cursorType={hasVideo ? 'video' : 'image'}
+                    cursorType={isVideoMode ? 'video' : 'image'}
                     onClick={() => {
                       if (hasVideo) setActiveVideoProject(project);
                       else setActiveLightboxProject(project);
                     }}
-                    className="h-full group bg-stone-950/80 backdrop-blur-xl rounded-3xl overflow-hidden border border-stone-800/80 hover:border-orange-500/70 shadow-xl hover:shadow-[0_0_35px_rgba(249,115,22,0.25)] transition-all duration-500 cursor-pointer flex flex-col"
+                    className={`h-full group bg-stone-950/80 backdrop-blur-xl rounded-3xl overflow-hidden border transition-all duration-500 cursor-pointer flex flex-col justify-between ${
+                      isVideoMode
+                        ? 'border-stone-800/80 hover:border-red-500/70 shadow-xl hover:shadow-[0_0_35px_rgba(239,68,68,0.25)]'
+                        : 'border-stone-800/80 hover:border-amber-500/70 shadow-xl hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]'
+                    }`}
                   >
-                    {/* Image & Video Container */}
+                    {/* Image & Video Thumbnail Container */}
                     <div className="relative aspect-[16/10] overflow-hidden bg-stone-900">
                       <img
                         src={project.image}
@@ -630,23 +596,36 @@ export default function Home() {
                         loading="lazy"
                       />
 
-                      {/* Top Right Category Pill */}
-                      <div className="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full border border-white/20 flex items-center gap-1.5">
-                        <span>{project.categoryLabel}</span>
+                      {/* Top Right Badge */}
+                      <div className="absolute top-3 right-3 bg-black/85 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full border border-white/20 flex items-center gap-1.5 shadow-md">
+                        {isVideoMode ? (
+                          <span>{project.categoryLabel}</span>
+                        ) : (
+                          <span className="text-amber-300 font-mono">🎨 PHOTOSHOP DESIGN</span>
+                        )}
                       </div>
 
-                      {/* Top Left Video Badge */}
-                      {hasVideo && (
+                      {/* Top Left Badge */}
+                      {isVideoMode ? (
                         <div className="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full flex items-center gap-1 shadow-lg">
                           <Play className="w-2.5 h-2.5 fill-current" />
-                          <span>{isReel ? 'ريلز / شورتس' : 'تشغيل الفيديو'}</span>
+                          <span>{isReel ? 'شورتس / ريلز' : 'فيديو كامل'}</span>
+                        </div>
+                      ) : (
+                        <div className="absolute top-3 left-3 bg-gradient-to-r from-orange-600 to-amber-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full flex items-center gap-1 shadow-lg">
+                          <Flame className="w-3 h-3" />
+                          <span>HIGH CTR</span>
                         </div>
                       )}
 
-                      {/* Center Hover Action */}
+                      {/* Center Hover Play/Zoom Circle */}
                       <div className="absolute inset-0 bg-stone-950/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <div className="w-14 h-14 rounded-full bg-orange-600 text-white flex items-center justify-center shadow-2xl transform scale-75 group-hover:scale-100 transition">
-                          {hasVideo ? (
+                        <div
+                          className={`w-14 h-14 rounded-full text-white flex items-center justify-center shadow-2xl transform scale-75 group-hover:scale-100 transition ${
+                            isVideoMode ? 'bg-red-600 shadow-red-600/50' : 'bg-amber-600 shadow-amber-600/50'
+                          }`}
+                        >
+                          {isVideoMode ? (
                             <Play className="w-6 h-6 fill-current translate-x-0.5" />
                           ) : (
                             <Maximize2 className="w-6 h-6" />
@@ -655,22 +634,57 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {/* Card Information */}
+                    {/* Card Information & Real Descriptions */}
                     <div className="p-6 flex flex-col flex-1 justify-between bg-stone-950/90 border-t border-stone-800/80">
                       <div>
                         <h3 className="font-bold text-white text-base sm:text-lg group-hover:text-orange-400 transition leading-snug">
                           {project.title}
                         </h3>
-                        <p className="text-xs text-stone-400 line-clamp-2 mt-2 leading-relaxed font-arabic" dir="rtl">
+
+                        {/* Pure Graphic Design or Video Editing Description */}
+                        <p className="text-xs text-stone-300 mt-2.5 leading-relaxed font-arabic" dir="rtl">
                           {project.description}
                         </p>
+
+                        {/* Software Badges */}
+                        {project.software && (
+                          <div className="flex flex-wrap gap-1.5 mt-3">
+                            {project.software.map((sw, sIdx) => (
+                              <span
+                                key={sIdx}
+                                className="px-2 py-0.5 rounded-md bg-stone-900 border border-stone-800 text-[10px] font-mono font-bold text-stone-400"
+                              >
+                                {sw}
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </div>
 
-                      <div className="pt-4 border-t border-stone-800/80 mt-4 flex items-center justify-between text-xs font-bold text-orange-400">
-                        <span className="flex items-center gap-1">
-                          {hasVideo ? 'مشاهدة الفيديو المباشر 🎬' : 'تكبير المعاينة 🔍'}
-                        </span>
-                        <span>←</span>
+                      <div className="pt-4 border-t border-stone-800/80 mt-4 flex items-center justify-between text-xs font-bold">
+                        {isVideoMode ? (
+                          <>
+                            <span className="text-red-400 flex items-center gap-1">
+                              <span>تشغيل الفيديو المباشر</span>
+                              <Play className="w-3 h-3 fill-current" />
+                            </span>
+                            {project.views && (
+                              <span className="text-stone-400 font-mono text-[11px]">
+                                👁️ {project.views} مشاهدة
+                              </span>
+                            )}
+                          </>
+                        ) : (
+                          <>
+                            <span className="text-amber-400 flex items-center gap-1">
+                              <span>تكبير التصميم 4K</span>
+                              <Maximize2 className="w-3 h-3" />
+                            </span>
+                            <span className="text-stone-400 font-mono text-[11px]">
+                              HD Graphic
+                            </span>
+                          </>
+                        )}
                       </div>
                     </div>
                   </TiltCard>
