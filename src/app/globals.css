@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;600;700;800;900&family=Bebas+Neue&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
+    @apply bg-[#FAF7F2] text-stone-900 antialiased selection:bg-orange-500 selection:text-white;
+  }
+
+  /* Custom Warm Orange Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #FAF7F2;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #fdba74;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #f97316;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Bebas Neue', 'Plus Jakarta Sans', sans-serif;
+  }
+  .font-arabic {
+    font-family: 'Cairo', sans-serif;
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .animate-pulse-glow {
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.05); }
+}
