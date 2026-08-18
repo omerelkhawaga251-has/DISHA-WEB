@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import {
   DISHA_INFO,
   SOFTWARE_TOOLS,
@@ -93,13 +93,13 @@ export default function Home() {
   };
 
   // Reusable scroll animation variants
-  const scrollSectionVariant = {
+  const scrollSectionVariant: Variants = {
     hidden: { opacity: 0, y: 40, scale: 0.98 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { duration: 0.65, ease: 'easeOut' },
+      transition: { duration: 0.65 },
     },
   };
 
