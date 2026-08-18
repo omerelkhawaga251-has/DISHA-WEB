@@ -10,6 +10,7 @@ export interface ProjectItem {
   software?: string[];
   views?: string;
   date?: string;
+  isCreativityShowcase?: boolean;
 }
 
 export interface YouTubeChannel {
@@ -144,8 +145,8 @@ export const YOUTUBE_CHANNELS: YouTubeChannel[] = [
     name: 'Disha Elmasry',
     handle: '@Disha_ELmasry',
     status: 'Official Personal Channel',
-    role: 'Video Editor & Thumbnail Designer',
-    description: 'القناة الرسمية الشخصية، حيث أتولى إدارة كامل عملية الإنتاج من مونتاج الفيديوهات وتصميم الصور المصغرة والمؤثرات البصرية وتجهيز المحتوى للنشر بأعلى جودة.',
+    role: 'Video Editor & Content Creator',
+    description: 'القناة الرسمية الشخصية لمصطفى المصري، حيث أتولى إدارة كامل عملية الإنتاج من مونتاج الفيديوهات وتصميم الصور المصغرة والمؤثرات البصرية وتجهيز المحتوى للنشر بأعلى جودة.',
     url: 'https://www.youtube.com/@Disha_ELmasry',
     avatar: '/my-photo.jpg',
   },
@@ -156,18 +157,19 @@ export const YOUTUBE_CHANNELS: YouTubeChannel[] = [
     role: 'Video Editor & Thumbnail Designer',
     description: 'أعمل حالياً مع فريق قناة رؤياي على يوتيوب، حيث أتولى مهمة المونتاج الكامل للفيديوهات، المؤثرات البصرية، وتصميم الصور المصغرة الاحترافية لدعم نمو القناة.',
     url: 'https://www.youtube.com/@Rooyai',
-    avatar: '/photos/photo_5776222588236403123_y.jpg',
+    avatar: '/rooyai-logo.jpg',
     isWorkingWith: true,
   },
 ];
 
 export const PORTFOLIO_PROJECTS: ProjectItem[] = [
+  // ─── 1. REAL YOUTUBE & REELS VIDEO PROJECTS (مع الثمبنيلات الأصلية من يوتيوب) ───
   {
     id: 'p1',
     title: 'مونتاج شورتس سينمائي احترافي (YouTube Short)',
     category: 'short',
     categoryLabel: 'شورتس / ريلز',
-    image: '/photos/photo_5776222588236403122_y.jpg',
+    image: 'https://img.youtube.com/vi/uiNZu1qbNxE/hqdefault.jpg',
     videoUrl: 'https://www.youtube.com/shorts/uiNZu1qbNxE',
     description: 'مونتاج سريع وسلس لمقطع يوتيوب شورتس مع انتقالات بصرية مذهلة وضبط دقيق لإيقاع الصوت.',
     software: ['Premiere Pro', 'After Effects'],
@@ -178,7 +180,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
     title: 'فيديو يوتيوب كامل سينمائي عالي الجودة',
     category: 'youtube',
     categoryLabel: 'فيديو يوتيوب',
-    image: '/photos/photo_5776222588236403123_y.jpg',
+    image: 'https://img.youtube.com/vi/wESXVrzeCmY/hqdefault.jpg',
     videoUrl: 'https://youtu.be/wESXVrzeCmY?si=_ghamX55Fl3_Egmh',
     description: 'مونتاج كامل عالي الجودة لفيديو يوتيوب مع تلوين سينمائي وتصميم صوتي متقن يرفع وقت المشاهدة.',
     software: ['DaVinci Resolve', 'Premiere Pro', 'After Effects'],
@@ -189,7 +191,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
     title: 'مونتاج شورتس ديناميكي مع تأثيرات بصرية جذابة',
     category: 'short',
     categoryLabel: 'شورتس / ريلز',
-    image: '/photos/photo_5776222588236403124_y.jpg',
+    image: 'https://img.youtube.com/vi/-3fRjoVIW44/hqdefault.jpg',
     videoUrl: 'https://www.youtube.com/shorts/-3fRjoVIW44',
     description: 'مونتاج شورتس سريع وتفاعلي مع كابشنز ورسومات حركية تخطف انتباه المشاهد من اللحظة الأولى.',
     software: ['CapCut Pro', 'Premiere Pro'],
@@ -211,7 +213,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
     title: 'يوتيوب شورتس بمؤثرات صوتية و Sound FX محيطية',
     category: 'short',
     categoryLabel: 'شورتس / ريلز',
-    image: '/photos/photo_5776222588236403126_y.jpg',
+    image: 'https://img.youtube.com/vi/5nlZDjLUjiE/hqdefault.jpg',
     videoUrl: 'https://www.youtube.com/shorts/5nlZDjLUjiE',
     description: 'مونتاج يركز على هندسة الصوت التفاعلية والانتقالات السلسة لزيادة معدل المشاهدة حتى النهاية.',
     software: ['Premiere Pro', 'Audition'],
@@ -233,7 +235,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
     title: 'شورتس يوتيوب سريع مع تحريك نصوص وجرافيكس',
     category: 'short',
     categoryLabel: 'شورتس / ريلز',
-    image: '/photos/photo_5776222588236403134_y.jpg',
+    image: 'https://img.youtube.com/vi/g2dyQSGcsGE/hqdefault.jpg',
     videoUrl: 'https://www.youtube.com/shorts/g2dyQSGcsGE',
     description: 'مونتاج شورتس بمؤثرات بصرية سريعة وتنسيق ألوان مريح للعين يلائم خوارزميات يوتيوب.',
     software: ['CapCut Pro', 'Premiere Pro'],
@@ -244,7 +246,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
     title: 'مونتاج شورتس قصصي مشوق يرفع الـ Retention',
     category: 'short',
     categoryLabel: 'شورتس / ريلز',
-    image: '/photos/photo_5776222588236403135_y.jpg',
+    image: 'https://img.youtube.com/vi/6lLL79GN_6E/hqdefault.jpg',
     videoUrl: 'https://www.youtube.com/shorts/6lLL79GN_6E',
     description: 'مونتاج محكم يركز على القصة والتسلسل الدرامي مع انتقالات سينمائية مميزة.',
     software: ['Premiere Pro', 'After Effects'],
@@ -255,12 +257,14 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
     title: 'يوتيوب شورتس إبداعي مع زوايا تصوير وتلوين سينمائي',
     category: 'short',
     categoryLabel: 'شورتس / ريلز',
-    image: '/photos/photo_5776222588236403136_y.jpg',
+    image: 'https://img.youtube.com/vi/bTTUOYBLIQs/hqdefault.jpg',
     videoUrl: 'https://www.youtube.com/shorts/bTTUOYBLIQs',
     description: 'مونتاج شورتس إبداعي مع تلوين وتصحيح للألوان وزيادة التباين الجمالي للمشاهد.',
     software: ['DaVinci Resolve', 'Premiere Pro'],
     views: '175K',
   },
+
+  // ─── 2. THUMBNAILS & GRAPHIC DESIGN MASTERPIECES (DISHA CREATIVITY) ───
   {
     id: 'p10',
     title: 'تصميم ثمبنيل سينمائي لقناة يوتيوب',
@@ -269,6 +273,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
     image: '/photos/photo_5776222588236403137_y.jpg',
     description: 'تصميم صورة مصغرة احترافية تعتمد على إضاءة ثلاثية النقاط وتوزيع لوني يجذب العين ويزيد من الـ CTR.',
     software: ['Photoshop', 'Lightroom'],
+    isCreativityShowcase: true,
   },
   {
     id: 'p11',
@@ -278,6 +283,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
     image: '/photos/photo_5776222588236403138_y.jpg',
     description: 'دمج عناصر متعددة مع تعديل الظلال والإضاءات الخلفية لصنع مشهد وثائقي تشويقي.',
     software: ['Photoshop'],
+    isCreativityShowcase: true,
   },
   {
     id: 'p12',
@@ -287,6 +293,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
     image: '/photos/photo_5776222588236403139_y.jpg',
     description: 'تصميم مخصص لأقوى اللحظات في الفيديو مع تباين قوي وسهل القراءة من شاشات الهواتف.',
     software: ['Photoshop'],
+    isCreativityShowcase: true,
   },
   {
     id: 'p13',
@@ -296,6 +303,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
     image: '/photos/photo_5776222588236403140_y.jpg',
     description: 'دمج تاريخي مع تلوين كلاسيكي يعطي شعوراً بالأصالة والتشويق.',
     software: ['Photoshop'],
+    isCreativityShowcase: true,
   },
   {
     id: 'p14',
@@ -305,6 +313,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
     image: '/photos/photo_5776222588236403141_y.jpg',
     description: 'إبراز تفاصيل المنتج بدقة مع مؤثرات الإضاءة النيون واللمعان.',
     software: ['Photoshop'],
+    isCreativityShowcase: true,
   },
   {
     id: 'p15',
@@ -314,6 +323,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
     image: '/photos/photo_5776222588236403142_y.jpg',
     description: 'تصميم بأسلوب مميز يدمج الشخصية مع الخلفية المظلمة والمشعة.',
     software: ['Photoshop'],
+    isCreativityShowcase: true,
   },
   {
     id: 'p16',
@@ -323,6 +333,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
     image: '/photos/photo_5776222588236403143_y.jpg',
     description: 'تأطير سينمائي مع تدرج لوني أزرق وبرتقالي (Teal & Orange) شهير وجذاب.',
     software: ['Photoshop'],
+    isCreativityShowcase: true,
   },
   {
     id: 'p17',
@@ -370,5 +381,10 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
     image: '/photos/photo_5776382129091580288_y.jpg',
     description: 'إخراج بصري متكامل من إضاءة ونصوص وتأثيرات تناسب جميع المقاسات الرقمية.',
     software: ['Photoshop', 'After Effects'],
+    isCreativityShowcase: true,
   },
 ];
+
+export const VIDEO_PROJECTS = PORTFOLIO_PROJECTS.filter((p) => !!p.videoUrl);
+export const DESIGN_PROJECTS = PORTFOLIO_PROJECTS.filter((p) => !p.videoUrl || p.category === 'thumbnail');
+export const DISHA_CREATIVITY_PROJECTS = PORTFOLIO_PROJECTS.filter((p) => p.isCreativityShowcase);

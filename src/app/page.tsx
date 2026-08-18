@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import {
   DISHA_INFO,
@@ -8,6 +9,9 @@ import {
   SERVICES,
   YOUTUBE_CHANNELS,
   PORTFOLIO_PROJECTS,
+  VIDEO_PROJECTS,
+  DESIGN_PROJECTS,
+  DISHA_CREATIVITY_PROJECTS,
   ProjectItem,
 } from '@/data/portfolioData';
 import {
@@ -42,6 +46,8 @@ import {
   Linkedin,
   Eye,
   Check,
+  Palette,
+  ArrowRight,
 } from 'lucide-react';
 import ImageLightboxModal from '@/components/ImageLightboxModal';
 import VideoModal from '@/components/VideoModal';
@@ -53,10 +59,12 @@ import ScrollProgress from '@/components/ScrollProgress';
 import MouseSpotlight from '@/components/MouseSpotlight';
 import AnimatedStatCounter from '@/components/AnimatedStatCounter';
 import InfiniteMarquee from '@/components/InfiniteMarquee';
+import DishaCreativitySection from '@/components/DishaCreativitySection';
 
 export default function Home() {
   const [activeVideoProject, setActiveVideoProject] = useState<ProjectItem | null>(null);
   const [activeLightboxProject, setActiveLightboxProject] = useState<ProjectItem | null>(null);
+  const [mainTab, setMainTab] = useState<'all' | 'videos' | 'designs'>('all');
   const [filterCategory, setFilterCategory] = useState<string>('all');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -68,12 +76,20 @@ export default function Home() {
     }
   };
 
+  // Compute filtered projects based on mainTab and subfilter
+  const baseProjects =
+    mainTab === 'videos'
+      ? VIDEO_PROJECTS
+      : mainTab === 'designs'
+      ? DESIGN_PROJECTS
+      : PORTFOLIO_PROJECTS;
+
   const filteredProjects =
     filterCategory === 'all'
-      ? PORTFOLIO_PROJECTS
+      ? baseProjects
       : filterCategory === 'videos'
-      ? PORTFOLIO_PROJECTS.filter((p) => !!p.videoUrl)
-      : PORTFOLIO_PROJECTS.filter((p) => p.category === filterCategory);
+      ? baseProjects.filter((p) => !!p.videoUrl)
+      : baseProjects.filter((p) => p.category === filterCategory);
 
   const getToolIcon = (name: string, size = 'w-6 h-6') => {
     switch (name) {
@@ -92,7 +108,6 @@ export default function Home() {
     }
   };
 
-  // Reusable scroll animation variants
   const scrollSectionVariant: Variants = {
     hidden: { opacity: 0, y: 40, scale: 0.98 },
     visible: {
@@ -114,7 +129,7 @@ export default function Home() {
           TOP FLOATING GLASS NAVBAR
           ────────────────────────────────────────────────────────────── */}
       <div className="fixed top-4 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
-        <header className="pointer-events-auto w-full max-w-5xl bg-white/85 backdrop-blur-2xl border border-stone-200/90 rounded-full px-6 h-16 sm:h-18 flex items-center justify-between shadow-xl shadow-stone-900/5 transition-all">
+        <header className="pointer-events-auto w-full max-w-6xl bg-white/90 backdrop-blur-2xl border border-stone-200/90 rounded-full px-6 h-16 sm:h-18 flex items-center justify-between shadow-xl shadow-stone-900/5 transition-all">
           {/* Logo (DISHA.) */}
           <div
             onClick={() => scrollToSection('hero')}
@@ -125,10 +140,11 @@ export default function Home() {
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-xs font-bold tracking-normal text-stone-700 font-arabic">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-7 text-xs font-bold tracking-normal text-stone-700 font-arabic">
             {[
-              { id: 'reel', label: 'بكرة العرض' },
-              { id: 'work', label: 'المشاريع' },
+              { id: 'reel', label: 'شريط المشاريع' },
+              { id: 'work', label: 'الفيديوهات والصور' },
+              { id: 'creativity', label: 'ديشا كرياتيفيتي' },
               { id: 'grading', label: 'التلوين السينمائي' },
               { id: 'about', label: 'عن مصطفى' },
               { id: 'services', label: 'الخدمات' },
@@ -145,8 +161,16 @@ export default function Home() {
             ))}
           </nav>
 
-          {/* Right Action Button */}
+          {/* Right Action Buttons */}
           <div className="hidden sm:flex items-center gap-3">
+            <Link
+              href="/videos"
+              className="px-4 py-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-bold transition flex items-center gap-1.5"
+            >
+              <Youtube className="w-3.5 h-3.5 text-red-600" />
+              <span>فيديوهات</span>
+            </Link>
+
             <a
               href={DISHA_INFO.socials.whatsapp.link}
               target="_blank"
@@ -161,7 +185,7 @@ export default function Home() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-full bg-stone-100 text-stone-900 border border-stone-200"
+            className="lg:hidden p-2 rounded-full bg-stone-100 text-stone-900 border border-stone-200"
             aria-label="Toggle Navigation"
           >
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -176,12 +200,13 @@ export default function Home() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed top-24 inset-x-4 z-40 bg-white/95 backdrop-blur-2xl border border-stone-200/90 rounded-3xl p-6 shadow-2xl md:hidden font-arabic"
+            className="fixed top-24 inset-x-4 z-40 bg-white/95 backdrop-blur-2xl border border-stone-200/90 rounded-3xl p-6 shadow-2xl lg:hidden font-arabic"
           >
-            <div className="flex flex-col gap-3.5 text-sm font-bold">
+            <div className="flex flex-col gap-3 text-sm font-bold">
               {[
-                { id: 'reel', label: 'بكرة العرض السينمائي' },
-                { id: 'work', label: 'معرض المشاريع والأعمال' },
+                { id: 'reel', label: 'شريط المشاريع السينمائي' },
+                { id: 'work', label: 'معرض الفيديوهات والتصاميم' },
+                { id: 'creativity', label: 'ديشا كرياتيفيتي (DISHA CREATIVITY)' },
                 { id: 'grading', label: 'سحر التلوين السينمائي' },
                 { id: 'about', label: 'عن مصطفى المصري' },
                 { id: 'services', label: 'الخدمات وترسانة البرامج' },
@@ -196,6 +221,26 @@ export default function Home() {
                   {item.label}
                 </button>
               ))}
+
+              <div className="grid grid-cols-2 gap-2 pt-2">
+                <Link
+                  href="/videos"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="py-2.5 rounded-xl bg-red-50 text-red-700 font-bold text-center text-xs border border-red-200 flex items-center justify-center gap-1.5"
+                >
+                  <Youtube className="w-3.5 h-3.5 text-red-600" />
+                  <span>صفحة الفيديوهات</span>
+                </Link>
+                <Link
+                  href="/designs"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="py-2.5 rounded-xl bg-amber-50 text-amber-800 font-bold text-center text-xs border border-amber-200 flex items-center justify-center gap-1.5"
+                >
+                  <Palette className="w-3.5 h-3.5 text-amber-600" />
+                  <span>صفحة التصاميم</span>
+                </Link>
+              </div>
+
               <a
                 href={DISHA_INFO.socials.whatsapp.link}
                 target="_blank"
@@ -256,20 +301,21 @@ export default function Home() {
               </p>
 
               {/* View Work CTA Buttons */}
-              <div className="mt-8 flex items-center gap-4">
+              <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
                 <button
                   onClick={() => scrollToSection('reel')}
-                  className="px-8 py-4 rounded-full bg-white hover:bg-orange-50 text-stone-950 font-black text-sm uppercase tracking-wider transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-2xl flex items-center gap-2"
+                  className="px-7 py-4 rounded-full bg-white hover:bg-orange-50 text-stone-950 font-black text-sm uppercase tracking-wider transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-2xl flex items-center gap-2"
                 >
-                  <span>بكرة العرض 3D</span>
+                  <span>شريط المشاريع</span>
                   <ArrowUpRight className="w-4 h-4" />
                 </button>
 
                 <button
-                  onClick={() => scrollToSection('work')}
-                  className="px-6 py-4 rounded-full bg-black/25 hover:bg-black/40 text-white font-bold text-xs uppercase tracking-wider transition backdrop-blur-md border border-white/20"
+                  onClick={() => scrollToSection('creativity')}
+                  className="px-6 py-4 rounded-full bg-black/25 hover:bg-black/40 text-white font-bold text-xs uppercase tracking-wider transition backdrop-blur-md border border-white/20 flex items-center gap-1.5"
                 >
-                  <span>كافة المشاريع</span>
+                  <Sparkles className="w-4 h-4 text-amber-300" />
+                  <span>ديشا كرياتيفيتي</span>
                 </button>
               </div>
             </div>
@@ -367,7 +413,7 @@ export default function Home() {
       <InfiniteMarquee />
 
       {/* ──────────────────────────────────────────────────────────────
-          3D CINEMA ROTARY FILM REEL SECTION
+          CINEMATIC PROJECTS REEL (شريط المشاريع السينمائي)
           ────────────────────────────────────────────────────────────── */}
       <motion.section
         id="reel"
@@ -382,6 +428,13 @@ export default function Home() {
           onPlayVideo={(p) => setActiveVideoProject(p)}
         />
       </motion.section>
+
+      {/* ──────────────────────────────────────────────────────────────
+          DISHA CREATIVITY SECTION (ديشا كرياتيفيتي // أفضل التصاميم)
+          ────────────────────────────────────────────────────────────── */}
+      <DishaCreativitySection
+        onSelectProject={(p) => setActiveLightboxProject(p)}
+      />
 
       {/* ──────────────────────────────────────────────────────────────
           COLOR GRADING BEFORE & AFTER SLIDER
@@ -411,7 +464,7 @@ export default function Home() {
       </motion.section>
 
       {/* ──────────────────────────────────────────────────────────────
-          ALL 21 PROJECTS SHOWCASE GRID
+          MAIN GALLERY HUB (WITH DEDICATED TABS & REAL YOUTUBE THUMBNAILS)
           ────────────────────────────────────────────────────────────── */}
       <motion.section
         id="work"
@@ -421,46 +474,115 @@ export default function Home() {
         variants={scrollSectionVariant}
         className="py-20 px-4 sm:px-6 max-w-7xl mx-auto"
       >
-        {/* Header & Category Filters */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-100 text-orange-700 text-xs font-bold uppercase tracking-wider mb-3">
-              <Film className="w-3.5 h-3.5" />
-              <span>GALLERY ({PORTFOLIO_PROJECTS.length} PROJECTS)</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-stone-900">
-              شبكة المعرض والمشاريع
-            </h2>
-            <p className="text-stone-600 text-sm mt-1">
-              انقر على أي فيديو لتشغيله مباشرة، أو انقر على الصور المصغرة للتكبير بدقة عالية
-            </p>
+        {/* Main 2-Hub Prominent Switcher */}
+        <div className="p-3 bg-stone-900 text-white rounded-3xl border border-stone-800 shadow-2xl mb-12 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2 p-1.5 bg-stone-950 rounded-2xl border border-stone-800 w-full md:w-auto">
+            <button
+              onClick={() => {
+                setMainTab('all');
+                setFilterCategory('all');
+              }}
+              className={`flex-1 md:flex-initial px-6 py-3 rounded-xl text-xs font-bold transition-all ${
+                mainTab === 'all'
+                  ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/40'
+                  : 'text-stone-400 hover:text-white'
+              }`}
+            >
+              كافة الأعمال ({PORTFOLIO_PROJECTS.length})
+            </button>
+
+            <button
+              onClick={() => {
+                setMainTab('videos');
+                setFilterCategory('all');
+              }}
+              className={`flex-1 md:flex-initial px-6 py-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
+                mainTab === 'videos'
+                  ? 'bg-red-600 text-white shadow-lg shadow-red-600/40'
+                  : 'text-stone-400 hover:text-white'
+              }`}
+            >
+              <Youtube className="w-4 h-4" />
+              <span>فيديوهات اليوتيوب والريلز ({VIDEO_PROJECTS.length})</span>
+            </button>
+
+            <button
+              onClick={() => {
+                setMainTab('designs');
+                setFilterCategory('all');
+              }}
+              className={`flex-1 md:flex-initial px-6 py-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
+                mainTab === 'designs'
+                  ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/40'
+                  : 'text-stone-400 hover:text-white'
+              }`}
+            >
+              <Palette className="w-4 h-4" />
+              <span>الصور والثمبنيلات ({DESIGN_PROJECTS.length})</span>
+            </button>
           </div>
 
-          {/* Filter Tabs */}
-          <div className="flex items-center gap-2 flex-wrap">
-            {[
-              { id: 'all', label: 'كافة الأعمال (21)' },
-              { id: 'short', label: 'شورتس وريلز ⚡' },
-              { id: 'youtube', label: 'فيديوهات يوتيوب 🎬' },
-              { id: 'thumbnail', label: 'ثمبنيلات 🎨' },
-              { id: 'brand', label: 'قنوات وبراندات' },
-            ].map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setFilterCategory(cat.id)}
-                className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all ${
-                  filterCategory === cat.id
-                    ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/30'
-                    : 'bg-white text-stone-700 border border-stone-200 hover:border-orange-600 hover:text-orange-600'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
+          <div className="flex items-center gap-3">
+            <Link
+              href="/videos"
+              className="text-xs font-bold text-red-400 hover:text-red-300 flex items-center gap-1 bg-stone-800/80 px-4 py-2.5 rounded-xl border border-stone-700"
+            >
+              <span>صفحة الفيديوهات المستقلة</span>
+              <ArrowRight className="w-3.5 h-3.5 rotate-180" />
+            </Link>
+            <Link
+              href="/designs"
+              className="text-xs font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1 bg-stone-800/80 px-4 py-2.5 rounded-xl border border-stone-700"
+            >
+              <span>صفحة التصاميم المستقلة</span>
+              <ArrowRight className="w-3.5 h-3.5 rotate-180" />
+            </Link>
           </div>
         </div>
 
-        {/* 21 Projects Interactive Grid */}
+        {/* Header & Sub-Category Filters */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div>
+            <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-stone-900">
+              {mainTab === 'videos'
+                ? 'فيديوهات اليوتيوب وشورتس وريلز'
+                : mainTab === 'designs'
+                ? 'الصور المصغرة والبوسترات الفنية'
+                : 'شبكة المعرض وكافة المشاريع'}
+            </h2>
+            <p className="text-stone-600 text-sm mt-1">
+              {mainTab === 'videos'
+                ? 'مجهزة بالثمبنيلات الأصلية من YouTube ومتاحة للتشغيل الفوري داخل الموقع'
+                : 'اضغط على أي مشروع لتكبيره بالدقة الكاملة أو مشاهدة تفاصيل المونتاج'}
+            </p>
+          </div>
+
+          {/* Sub-Filters */}
+          {mainTab === 'all' && (
+            <div className="flex items-center gap-2 flex-wrap">
+              {[
+                { id: 'all', label: 'الكل' },
+                { id: 'short', label: 'شورتس وريلز ⚡' },
+                { id: 'youtube', label: 'فيديوهات يوتيوب 🎬' },
+                { id: 'thumbnail', label: 'ثمبنيلات 🎨' },
+              ].map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setFilterCategory(cat.id)}
+                  className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all ${
+                    filterCategory === cat.id
+                      ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/30'
+                      : 'bg-white text-stone-700 border border-stone-200 hover:border-orange-600 hover:text-orange-600'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Projects Interactive Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, idx) => {
@@ -625,12 +747,11 @@ export default function Home() {
           </p>
         </div>
 
-        {/* High-Motion Interactive Component */}
         <InteractiveServicesArsenal />
       </motion.section>
 
       {/* ──────────────────────────────────────────────────────────────
-          YOUTUBE CHANNELS SECTION
+          YOUTUBE CHANNELS SECTION (WITH OFFICIAL ROOYAI LOGO)
           ────────────────────────────────────────────────────────────── */}
       <motion.section
         id="channels"
@@ -659,11 +780,13 @@ export default function Home() {
             >
               <div>
                 <div className="flex items-center gap-4 mb-4">
-                  <img
-                    src={channel.avatar}
-                    alt={channel.name}
-                    className="w-16 h-16 rounded-2xl object-cover ring-2 ring-red-500/40"
-                  />
+                  <div className="w-16 h-16 rounded-2xl overflow-hidden bg-stone-900 border-2 border-red-500/40 p-1 flex items-center justify-center flex-shrink-0">
+                    <img
+                      src={channel.avatar}
+                      alt={channel.name}
+                      className="w-full h-full object-contain rounded-xl"
+                    />
+                  </div>
                   <div>
                     <h3 className="text-xl font-black text-white flex items-center gap-2">
                       {channel.name}
