@@ -54,7 +54,6 @@ import {
 } from 'lucide-react';
 import ImageLightboxModal from '@/components/ImageLightboxModal';
 import VideoModal from '@/components/VideoModal';
-import ColorGradingSlider from '@/components/ColorGradingSlider';
 import FilmReelCylinder from '@/components/FilmReelCylinder';
 import InteractiveServicesArsenal from '@/components/InteractiveServicesArsenal';
 import CustomCursor from '@/components/CustomCursor';
@@ -143,8 +142,7 @@ export default function Home() {
             {[
               { id: 'reel', label: 'شريط المشاريع' },
               { id: 'creativity', label: 'ديشا كرياتيفيتي' },
-              { id: 'grading', label: 'التلوين السينمائي' },
-              { id: 'work', label: 'المعرض الشامل' },
+              { id: 'work', label: 'معرض المشاريع' },
               { id: 'about', label: 'عن مصطفى' },
               { id: 'services', label: 'الخدمات' },
               { id: 'channels', label: 'قنوات يوتيوب' },
@@ -205,7 +203,6 @@ export default function Home() {
               {[
                 { id: 'reel', label: 'شريط المشاريع السينمائي' },
                 { id: 'creativity', label: 'ديشا كرياتيفيتي (DISHA CREATIVITY)' },
-                { id: 'grading', label: 'سحر التلوين السينمائي' },
                 { id: 'work', label: 'معرض الفيديوهات والتصاميم' },
                 { id: 'about', label: 'عن مصطفى المصري' },
                 { id: 'services', label: 'الخدمات وترسانة البرامج' },
@@ -291,9 +288,10 @@ export default function Home() {
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
-                className="text-[18vw] sm:text-[14vw] lg:text-[8.5rem] font-black leading-none tracking-tighter text-white uppercase font-display drop-shadow-lg select-none"
+                className="text-6xl sm:text-8xl lg:text-[7.5rem] font-black leading-none tracking-wide sm:tracking-widest text-white uppercase drop-shadow-[0_4px_30px_rgba(0,0,0,0.4)] select-none flex items-baseline gap-2 mb-4"
               >
-                CREATE<span className="text-amber-300">.</span>
+                <span>CREATE</span>
+                <span className="text-amber-300 text-4xl sm:text-6xl font-black">.</span>
               </motion.h1>
               
               <p className="text-xl sm:text-2xl font-bold text-orange-100 mt-2 max-w-md leading-snug">
@@ -450,34 +448,7 @@ export default function Home() {
       </motion.section>
 
       {/* ──────────────────────────────────────────────────────────────
-          STAGE 04: COLOR ALCHEMY SLIDER (سحر التلوين السينمائي)
-          ────────────────────────────────────────────────────────────── */}
-      <motion.section
-        id="grading"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-60px' }}
-        variants={scrollSectionVariant}
-        className="py-16 px-4 sm:px-6 max-w-7xl mx-auto relative z-10"
-      >
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-500/20 text-orange-400 text-xs font-mono font-bold uppercase tracking-wider mb-3 border border-orange-500/30">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>COLOR & VFX MASTERY // مختبر الألوان</span>
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
-            سحر التلوين والمؤثرات السينمائية
-          </h2>
-          <p className="text-stone-400 text-sm sm:text-base max-w-xl mx-auto mt-2 font-arabic">
-            اسحب المقبض لترى كيف نحول لقطات الكاميرا الباهتة إلى مشهد مشبع بالحياة والدراما البصرية.
-          </p>
-        </div>
-
-        <ColorGradingSlider imageSrc="/photos/photo_5776222588236403122_y.jpg" />
-      </motion.section>
-
-      {/* ──────────────────────────────────────────────────────────────
-          STAGE 05: MAIN GALLERY HUB (2 DEDICATED SECTIONS: VIDEOS & DESIGNS)
+          STAGE 04: MAIN GALLERY HUB (2 DEDICATED SECTIONS: VIDEOS & DESIGNS)
           ────────────────────────────────────────────────────────────── */}
       <motion.section
         id="work"
@@ -696,7 +667,7 @@ export default function Home() {
       </motion.section>
 
       {/* ──────────────────────────────────────────────────────────────
-          STAGE 06: ABOUT SECTION (من هو مصطفى المصري؟)
+          STAGE 05: ABOUT SECTION (من هو مصطفى المصري؟)
           ────────────────────────────────────────────────────────────── */}
       <motion.section
         id="about"
@@ -704,8 +675,11 @@ export default function Home() {
         whileInView="visible"
         viewport={{ once: true, margin: '-60px' }}
         variants={scrollSectionVariant}
-        className="py-20 px-4 sm:px-6 max-w-7xl mx-auto bg-stone-950/80 backdrop-blur-2xl rounded-[2.5rem] border border-stone-800 shadow-2xl my-8 relative z-10"
+        className="py-20 px-4 sm:px-6 max-w-7xl mx-auto bg-stone-950/85 backdrop-blur-2xl rounded-[2.5rem] border border-stone-800 shadow-2xl my-8 relative z-10 overflow-hidden"
       >
+        {/* Glow ambient background */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl pointer-events-none" />
+
         <div className="max-w-4xl mx-auto text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-500/20 text-orange-400 text-xs font-mono font-bold uppercase tracking-wider mb-3 border border-orange-500/30">
             <User className="w-3.5 h-3.5" />
@@ -716,47 +690,68 @@ export default function Home() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center max-w-5xl mx-auto">
-          <div className="space-y-4 text-stone-300 leading-relaxed font-arabic" dir="rtl">
-            <p className="text-base sm:text-lg font-semibold text-white">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center max-w-6xl mx-auto">
+          {/* Column 1: Mostafa's Photo with Glowing Frame */}
+          <div className="lg:col-span-4 flex flex-col items-center">
+            <div className="relative group w-64 sm:w-72 aspect-square rounded-3xl overflow-hidden border-2 border-orange-500/60 shadow-[0_0_40px_rgba(249,115,22,0.25)] bg-stone-900">
+              <img
+                src={DISHA_INFO.photo}
+                alt={DISHA_INFO.arabicName}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-4 text-center">
+                <span className="text-white font-black text-lg">{DISHA_INFO.arabicName}</span>
+                <span className="text-orange-400 text-xs font-mono font-bold">{DISHA_INFO.title}</span>
+              </div>
+            </div>
+
+            <div className="mt-4 flex items-center gap-2 bg-stone-900 px-4 py-2 rounded-xl border border-stone-800 text-xs font-mono text-stone-300">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+              <span>{DISHA_INFO.age} YEARS // BORG EL ARAB TECH</span>
+            </div>
+          </div>
+
+          {/* Column 2: Bio and Details */}
+          <div className="lg:col-span-8 space-y-5 text-stone-300 leading-relaxed font-arabic" dir="rtl">
+            <p className="text-base sm:text-lg font-bold text-white leading-relaxed">
               أنا مصطفى المصري (21 عاماً)، طالب في {DISHA_INFO.arabicUniversity}.
             </p>
             <p className="text-sm sm:text-base text-stone-300 leading-relaxed">
               {DISHA_INFO.bio}
             </p>
+            
             <div className="p-4 rounded-2xl bg-orange-950/40 border border-orange-500/30 text-orange-200 text-xs sm:text-sm font-medium">
               <span className="font-bold text-orange-400 block mb-1">🤖 فلسفة الذكاء الاصطناعي:</span>
               {DISHA_INFO.aiPhilosophy}
             </div>
-          </div>
 
-          <div className="space-y-3">
-            {[
-              { title: 'إدارة دورة الإنتاج كاملة', desc: 'من الفكرة والمشاهد الخام وحتى إخراج الفيديو النهائي.' },
-              { title: 'زيادة وقت المشاهدة (Pacing & Retention)', desc: 'تقطيع ذكي وتغيير زوايا يمنع الملل ويزيد تفاعل الجمهور.' },
-              { title: 'تصميم وهندسة الصوت (Sound Design)', desc: 'مؤثرات صوتية وموسيقى ترفع المشاعر والاندماج.' },
-              { title: 'تصميم صور مصغرة (Thumbnails)', desc: 'صور ذات نسبة نقر مرتفعة CTR تلفت الأنظار بين آلاف الفيديوهات.' },
-            ].map((item, idx) => (
-              <motion.div
-                key={idx}
-                whileHover={{ scale: 1.02, x: -4 }}
-                className="p-4 rounded-2xl bg-stone-900/80 border border-stone-800 flex items-start gap-3 transition-all"
-              >
-                <div className="w-7 h-7 rounded-xl bg-orange-600 text-white flex items-center justify-center flex-shrink-0 text-xs font-bold">
-                  ✓
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              {[
+                { title: 'إدارة دورة الإنتاج كاملة', desc: 'من الفكرة والمشاهد الخام وحتى إخراج الفيديو النهائي.' },
+                { title: 'زيادة وقت المشاهدة (Retention)', desc: 'تقطيع ذكي وتغيير زوايا يمنع الملل ويزيد التفاعل.' },
+                { title: 'تصميم وهندسة الصوت (Sound Design)', desc: 'مؤثرات صوتية وموسيقى ترفع المشاعر والاندماج.' },
+                { title: 'تصميم صور مصغرة (Thumbnails)', desc: 'صور ذات نسبة نقر مرتفعة CTR تلفت الأنظار.' },
+              ].map((item, idx) => (
+                <div
+                  key={idx}
+                  className="p-3.5 rounded-2xl bg-stone-900/90 border border-stone-800 flex items-start gap-3"
+                >
+                  <div className="w-6 h-6 rounded-lg bg-orange-600 text-white flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">
+                    ✓
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-white text-xs sm:text-sm">{item.title}</h4>
+                    <p className="text-[11px] text-stone-400 mt-0.5">{item.desc}</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-bold text-white text-sm">{item.title}</h4>
-                  <p className="text-xs text-stone-400 mt-0.5">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </motion.section>
 
       {/* ──────────────────────────────────────────────────────────────
-          STAGE 07: SERVICES & SOFTWARE ARSENAL (ANIMATED)
+          STAGE 06: SERVICES & SOFTWARE ARSENAL (ANIMATED)
           ────────────────────────────────────────────────────────────── */}
       <motion.section
         id="services"
@@ -783,7 +778,7 @@ export default function Home() {
       </motion.section>
 
       {/* ──────────────────────────────────────────────────────────────
-          STAGE 08: YOUTUBE CHANNELS (WITH OFFICIAL ROOYAI LOGO)
+          STAGE 07: YOUTUBE CHANNELS (WITH OFFICIAL ROOYAI LOGO)
           ────────────────────────────────────────────────────────────── */}
       <motion.section
         id="channels"
@@ -813,11 +808,16 @@ export default function Home() {
             >
               <div>
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-16 h-16 rounded-2xl overflow-hidden bg-black border-2 border-red-500/40 p-1 flex items-center justify-center flex-shrink-0">
+                  {/* Perfect Square Avatar Frame */}
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden bg-black border-2 border-red-500/50 flex items-center justify-center flex-shrink-0 shadow-xl">
                     <img
                       src={channel.avatar}
                       alt={channel.name}
-                      className="w-full h-full object-contain rounded-xl"
+                      className={`w-full h-full ${
+                        channel.isWorkingWith
+                          ? 'object-contain p-2 bg-stone-950'
+                          : 'object-cover'
+                      }`}
                     />
                   </div>
                   <div>
@@ -825,7 +825,7 @@ export default function Home() {
                       {channel.name}
                       <CheckCircle2 className="w-4 h-4 text-red-500" />
                     </h3>
-                    <p className="text-xs text-orange-400 font-bold">{channel.role}</p>
+                    <p className="text-xs text-orange-400 font-bold mt-0.5">{channel.role}</p>
                   </div>
                 </div>
 

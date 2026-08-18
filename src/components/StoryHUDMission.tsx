@@ -20,9 +20,9 @@ export default function StoryHUDMission({
     { id: 'hero', code: 'STAGE 01', label: 'مدار الإطلاق', en: 'ORIGIN & BIO', icon: Rocket },
     { id: 'reel', code: 'STAGE 02', label: 'شريط المشاريع 3D', en: 'PROJECT REEL', icon: Film },
     { id: 'creativity', code: 'STAGE 03', label: 'ديشا كرياتيفيتي', en: 'CREATIVITY', icon: Sparkles },
-    { id: 'grading', code: 'STAGE 04', label: 'سحر التلوين', en: 'COLOR ALCHEMY', icon: Palette },
-    { id: 'work', code: 'STAGE 05', label: 'المعرض الشامل', en: 'ALL PROJECTS', icon: Film },
-    { id: 'services', code: 'STAGE 06', label: 'ترسانة البرامج', en: 'ARSENAL DOCK', icon: Layers },
+    { id: 'work', code: 'STAGE 04', label: 'معرض المشاريع', en: 'ALL PROJECTS', icon: Film },
+    { id: 'about', code: 'STAGE 05', label: 'عن مصطفى', en: 'ABOUT DISHA', icon: Rocket },
+    { id: 'services', code: 'STAGE 06', label: 'ترسانة البرامج والخدمات', en: 'ARSENAL DOCK', icon: Layers },
     { id: 'channels', code: 'STAGE 07', label: 'قنوات يوتيوب', en: 'ARENAS & ROOYAI', icon: Youtube },
     { id: 'contact', code: 'STAGE 08', label: 'محطة الاتصال', en: 'TRANSMISSION', icon: Send },
   ];
