@@ -8,10 +8,10 @@ import {
   SOFTWARE_TOOLS,
   SERVICES,
   YOUTUBE_CHANNELS,
+  POST_DESIGNS,
+  YOUTUBE_THUMBNAILS,
+  VIDEOS_AND_REELS,
   PORTFOLIO_PROJECTS,
-  VIDEO_PROJECTS,
-  DESIGN_PROJECTS,
-  DISHA_CREATIVITY_PROJECTS,
   ProjectItem,
 } from '@/data/portfolioData';
 import {
@@ -69,8 +69,7 @@ import TiltCard from '@/components/TiltCard';
 export default function Home() {
   const [activeVideoProject, setActiveVideoProject] = useState<ProjectItem | null>(null);
   const [activeLightboxProject, setActiveLightboxProject] = useState<ProjectItem | null>(null);
-  const [mainTab, setMainTab] = useState<'videos' | 'designs'>('videos');
-  const [filterCategory, setFilterCategory] = useState<string>('all');
+  const [galleryTab, setGalleryTab] = useState<'posts' | 'thumbnails' | 'videos'>('posts');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
@@ -80,20 +79,6 @@ export default function Home() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  const baseProjects =
-    mainTab === 'videos'
-      ? VIDEO_PROJECTS
-      : mainTab === 'designs'
-      ? DESIGN_PROJECTS
-      : PORTFOLIO_PROJECTS;
-
-  const filteredProjects =
-    filterCategory === 'all'
-      ? baseProjects
-      : filterCategory === 'videos'
-      ? baseProjects.filter((p) => !!p.videoUrl)
-      : baseProjects.filter((p) => p.category === filterCategory);
 
   const scrollSectionVariant: Variants = {
     hidden: { opacity: 0, y: 50, scale: 0.97 },
@@ -328,7 +313,7 @@ export default function Home() {
                 <img src="/photos/photo_5776222588236403123_y.jpg" alt="Project 2" className="w-10 h-10 rounded-full border-2 border-orange-600 object-cover" />
                 <img src="/photos/photo_5776222588236403124_y.jpg" alt="Project 3" className="w-10 h-10 rounded-full border-2 border-orange-600 object-cover" />
                 <div className="w-10 h-10 rounded-full border-2 border-orange-600 bg-black/60 backdrop-blur-sm text-white text-xs font-black flex items-center justify-center">
-                  +150
+                  +300
                 </div>
               </div>
               <div className="text-xs text-orange-100 font-medium">
@@ -448,7 +433,7 @@ export default function Home() {
       </motion.section>
 
       {/* ──────────────────────────────────────────────────────────────
-          STAGE 04: MAIN GALLERY HUB (2 DEDICATED SECTIONS: VIDEOS & DESIGNS)
+          STAGE 04: MAIN GALLERY HUB (3 DEDICATED SECTIONS: POSTS, THUMBNAILS, VIDEOS)
           ────────────────────────────────────────────────────────────── */}
       <motion.section
         id="work"
@@ -462,78 +447,90 @@ export default function Home() {
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-500/20 text-orange-400 text-xs font-mono font-bold uppercase tracking-wider mb-3 border border-orange-500/30">
             <Film className="w-3.5 h-3.5" />
-            <span>PORTFOLIO SECTIONS // معرض الأعمال</span>
+            <span>PORTFOLIO SECTIONS // معرض المشاريع</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
-            {mainTab === 'videos'
-              ? 'معرض مقاطع الفيديو والريلز'
-              : 'معرض تصاميم الصور والثمبنيلات'}
+            {galleryTab === 'posts'
+              ? 'معرض تصاميم البوسترات (Post Designs)'
+              : galleryTab === 'thumbnails'
+              ? 'معرض صور اليوتيوب المصغرة (YouTube Thumbnails)'
+              : 'معرض الفيديوهات والريلز (Videos & Reels)'}
           </h2>
           <p className="text-stone-400 text-sm sm:text-base max-w-xl mx-auto mt-2 font-arabic" dir="rtl">
-            {mainTab === 'videos'
-              ? 'فيديوهات يوتيوب كاملة وشورتس وريلز جاهزة للمشاهدة المباشرة بالثمبنيلات الأصلية'
-              : 'شرح تحليلي لكل صورة وثمبنيل يوضح تقنيات التصميم، الدمج بالفوتوشوب، وسر رفع الـ CTR'}
+            {galleryTab === 'posts'
+              ? 'بوسترات وحملات إعلانية وسوشيال ميديا مصممة باحترافية عالية بالفوتوشوب'
+              : galleryTab === 'thumbnails'
+              ? 'صور مصغرة لليوتيوب ذات تباين ونسبة نقر مرتفعة CTR تجذب ملايين المشاهدات'
+              : 'قسم مخصص لأحدث مقاطع المونتاج والريلز والشورتس'}
           </p>
         </div>
 
-        {/* 2 Dedicated Tabs Only */}
-        <div className="p-3 bg-stone-950/80 backdrop-blur-2xl text-white rounded-3xl border border-stone-800 shadow-2xl mb-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="grid grid-cols-2 gap-2 p-1.5 bg-stone-900 rounded-2xl border border-stone-800 w-full sm:w-auto">
-            {/* TAB 1: VIDEOS */}
+        {/* 3 Dedicated Tabs Switcher */}
+        <div className="p-3 bg-stone-950/80 backdrop-blur-2xl text-white rounded-3xl border border-stone-800 shadow-2xl mb-12 flex flex-col lg:flex-row items-center justify-between gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 p-1.5 bg-stone-900 rounded-2xl border border-stone-800 w-full lg:w-auto">
+            {/* TAB 1: POST DESIGNS */}
             <button
-              onClick={() => setMainTab('videos')}
-              className={`px-6 sm:px-8 py-3.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2.5 ${
-                mainTab === 'videos'
-                  ? 'bg-red-600 text-white shadow-lg shadow-red-600/40'
+              onClick={() => setGalleryTab('posts')}
+              className={`px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 ${
+                galleryTab === 'posts'
+                  ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/40'
                   : 'text-stone-400 hover:text-white'
               }`}
             >
-              <Youtube className="w-4 h-4" />
-              <span>1. مقاطع الفيديو والريلز ({VIDEO_PROJECTS.length})</span>
+              <ImageIcon className="w-4 h-4" />
+              <span>1. Post Designs ({POST_DESIGNS.length})</span>
             </button>
 
-            {/* TAB 2: DESIGNS */}
+            {/* TAB 2: YOUTUBE THUMBNAILS */}
             <button
-              onClick={() => setMainTab('designs')}
-              className={`px-6 sm:px-8 py-3.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2.5 ${
-                mainTab === 'designs'
+              onClick={() => setGalleryTab('thumbnails')}
+              className={`px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 ${
+                galleryTab === 'thumbnails'
                   ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/40'
                   : 'text-stone-400 hover:text-white'
               }`}
             >
               <Palette className="w-4 h-4" />
-              <span>2. تصاميم الصور والثمبنيلات ({DESIGN_PROJECTS.length})</span>
+              <span>2. YouTube Thumbnails ({YOUTUBE_THUMBNAILS.length})</span>
+            </button>
+
+            {/* TAB 3: VIDEOS & REELS */}
+            <button
+              onClick={() => setGalleryTab('videos')}
+              className={`px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 ${
+                galleryTab === 'videos'
+                  ? 'bg-red-600 text-white shadow-lg shadow-red-600/40'
+                  : 'text-stone-400 hover:text-white'
+              }`}
+            >
+              <Youtube className="w-4 h-4" />
+              <span>3. Videos & Reels ({VIDEOS_AND_REELS.length})</span>
             </button>
           </div>
 
           <div className="flex items-center gap-3">
-            {mainTab === 'videos' ? (
-              <Link
-                href="/videos"
-                className="text-xs font-bold text-red-400 hover:text-red-300 flex items-center gap-1.5 bg-stone-900 px-5 py-3 rounded-xl border border-stone-800"
-              >
-                <span>فتح صفحة الفيديوهات المستقلة</span>
-                <ArrowRight className="w-3.5 h-3.5 rotate-180" />
-              </Link>
-            ) : (
-              <Link
-                href="/designs"
-                className="text-xs font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1.5 bg-stone-900 px-5 py-3 rounded-xl border border-stone-800"
-              >
-                <span>فتح صفحة التصاميم المستقلة</span>
-                <ArrowRight className="w-3.5 h-3.5 rotate-180" />
-              </Link>
-            )}
+            <Link
+              href="/designs"
+              className="text-xs font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1.5 bg-stone-900 px-5 py-3 rounded-xl border border-stone-800"
+            >
+              <span>معرض التصاميم المستقل</span>
+              <ArrowRight className="w-3.5 h-3.5 rotate-180" />
+            </Link>
           </div>
         </div>
 
-        {/* Projects Interactive Grid */}
+        {/* Dynamic Gallery Content for 3 Tabs */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           <AnimatePresence mode="popLayout">
-            {(mainTab === 'videos' ? VIDEO_PROJECTS : DESIGN_PROJECTS).map((project, idx) => {
-              const isVideoMode = mainTab === 'videos';
-              const hasVideo = !!project.videoUrl;
-              const isReel = project.videoUrl?.includes('instagram.com') || project.videoUrl?.includes('shorts');
+            {(galleryTab === 'posts'
+              ? POST_DESIGNS
+              : galleryTab === 'thumbnails'
+              ? YOUTUBE_THUMBNAILS
+              : VIDEOS_AND_REELS
+            ).map((project, idx) => {
+              const isVideo = galleryTab === 'videos' || !!project.videoUrl;
+              const isPost = galleryTab === 'posts';
+              const isDrive = project.categoryLabel?.includes('Drive');
 
               return (
                 <motion.div
@@ -547,18 +544,25 @@ export default function Home() {
                   <TiltCard
                     maxTilt={12}
                     scaleOnHover={1.03}
-                    cursorType={isVideoMode ? 'video' : 'image'}
+                    cursorType={isVideo ? 'video' : 'image'}
                     onClick={() => {
-                      if (hasVideo) setActiveVideoProject(project);
-                      else setActiveLightboxProject(project);
+                      if (isDrive && project.videoUrl) {
+                        window.open(project.videoUrl, '_blank');
+                      } else if (isVideo && project.videoUrl) {
+                        setActiveVideoProject(project);
+                      } else {
+                        setActiveLightboxProject(project);
+                      }
                     }}
                     className={`h-full group bg-stone-950/80 backdrop-blur-xl rounded-3xl overflow-hidden border transition-all duration-500 cursor-pointer flex flex-col justify-between ${
-                      isVideoMode
+                      isVideo
                         ? 'border-stone-800/80 hover:border-red-500/70 shadow-xl hover:shadow-[0_0_35px_rgba(239,68,68,0.25)]'
+                        : isPost
+                        ? 'border-stone-800/80 hover:border-orange-500/70 shadow-xl hover:shadow-[0_0_35px_rgba(249,115,22,0.25)]'
                         : 'border-stone-800/80 hover:border-amber-500/70 shadow-xl hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]'
                     }`}
                   >
-                    {/* Image & Video Thumbnail Container */}
+                    {/* Image / Video Thumbnail Container */}
                     <div className="relative aspect-[16/10] overflow-hidden bg-stone-900">
                       <img
                         src={project.image}
@@ -569,18 +573,20 @@ export default function Home() {
 
                       {/* Top Right Badge */}
                       <div className="absolute top-3 right-3 bg-black/85 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full border border-white/20 flex items-center gap-1.5 shadow-md">
-                        {isVideoMode ? (
-                          <span>{project.categoryLabel}</span>
+                        {isVideo ? (
+                          <span className="text-red-400 font-mono">🎬 {project.categoryLabel}</span>
+                        ) : isPost ? (
+                          <span className="text-orange-400 font-mono">🎨 POST DESIGN</span>
                         ) : (
-                          <span className="text-amber-300 font-mono">🎨 PHOTOSHOP DESIGN</span>
+                          <span className="text-amber-300 font-mono">⚡ YT THUMBNAIL</span>
                         )}
                       </div>
 
                       {/* Top Left Badge */}
-                      {isVideoMode ? (
+                      {isVideo ? (
                         <div className="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full flex items-center gap-1 shadow-lg">
                           <Play className="w-2.5 h-2.5 fill-current" />
-                          <span>{isReel ? 'شورتس / ريلز' : 'فيديو كامل'}</span>
+                          <span>فيديو أصلي</span>
                         </div>
                       ) : (
                         <div className="absolute top-3 left-3 bg-gradient-to-r from-orange-600 to-amber-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full flex items-center gap-1 shadow-lg">
@@ -589,14 +595,18 @@ export default function Home() {
                         </div>
                       )}
 
-                      {/* Center Hover Play/Zoom Circle */}
+                      {/* Center Hover Action */}
                       <div className="absolute inset-0 bg-stone-950/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <div
                           className={`w-14 h-14 rounded-full text-white flex items-center justify-center shadow-2xl transform scale-75 group-hover:scale-100 transition ${
-                            isVideoMode ? 'bg-red-600 shadow-red-600/50' : 'bg-amber-600 shadow-amber-600/50'
+                            isVideo
+                              ? 'bg-red-600 shadow-red-600/50'
+                              : isPost
+                              ? 'bg-orange-600 shadow-orange-600/50'
+                              : 'bg-amber-600 shadow-amber-600/50'
                           }`}
                         >
-                          {isVideoMode ? (
+                          {isVideo ? (
                             <Play className="w-6 h-6 fill-current translate-x-0.5" />
                           ) : (
                             <Maximize2 className="w-6 h-6" />
@@ -605,14 +615,13 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {/* Card Information & Real Descriptions */}
+                    {/* Card Information */}
                     <div className="p-6 flex flex-col flex-1 justify-between bg-stone-950/90 border-t border-stone-800/80">
                       <div>
                         <h3 className="font-bold text-white text-base sm:text-lg group-hover:text-orange-400 transition leading-snug">
                           {project.title}
                         </h3>
 
-                        {/* Pure Graphic Design or Video Editing Description */}
                         <p className="text-xs text-stone-300 mt-2.5 leading-relaxed font-arabic" dir="rtl">
                           {project.description}
                         </p>
@@ -633,29 +642,30 @@ export default function Home() {
                       </div>
 
                       <div className="pt-4 border-t border-stone-800/80 mt-4 flex items-center justify-between text-xs font-bold">
-                        {isVideoMode ? (
-                          <>
-                            <span className="text-red-400 flex items-center gap-1">
-                              <span>تشغيل الفيديو المباشر</span>
+                        <span
+                          className={
+                            isVideo
+                              ? 'text-red-400 flex items-center gap-1'
+                              : isPost
+                              ? 'text-orange-400 flex items-center gap-1'
+                              : 'text-amber-400 flex items-center gap-1'
+                          }
+                        >
+                          {isVideo ? (
+                            <>
+                              <span>{isDrive ? 'فتح مجلد Drive 📂' : 'تشغيل الفيديو 🎬'}</span>
                               <Play className="w-3 h-3 fill-current" />
-                            </span>
-                            {project.views && (
-                              <span className="text-stone-400 font-mono text-[11px]">
-                                👁️ {project.views} مشاهدة
-                              </span>
-                            )}
-                          </>
-                        ) : (
-                          <>
-                            <span className="text-amber-400 flex items-center gap-1">
+                            </>
+                          ) : (
+                            <>
                               <span>تكبير التصميم 4K</span>
                               <Maximize2 className="w-3 h-3" />
-                            </span>
-                            <span className="text-stone-400 font-mono text-[11px]">
-                              HD Graphic
-                            </span>
-                          </>
-                        )}
+                            </>
+                          )}
+                        </span>
+                        <span className="text-stone-400 font-mono text-[11px]">
+                          {isVideo ? 'Playback Ready' : isPost ? 'Social Ad' : 'HD Thumbnail'}
+                        </span>
                       </div>
                     </div>
                   </TiltCard>
@@ -989,7 +999,7 @@ export default function Home() {
       {activeLightboxProject && (
         <ImageLightboxModal
           project={activeLightboxProject}
-          projects={filteredProjects}
+          projects={galleryTab === 'posts' ? POST_DESIGNS : YOUTUBE_THUMBNAILS}
           onClose={() => setActiveLightboxProject(null)}
           onSelectProject={(p) => setActiveLightboxProject(p)}
         />

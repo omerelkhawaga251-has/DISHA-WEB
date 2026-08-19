@@ -38,6 +38,7 @@ export default function InteractiveServicesArsenal() {
       borderGlow: 'hover:border-amber-500/80 hover:shadow-amber-500/20',
       badge: '10-Bit Color',
       icon: Film,
+      logoImg: '/apps/DaVinci_Resolve_Studio.png',
       metric: 'Master Level',
     },
     {
@@ -48,6 +49,7 @@ export default function InteractiveServicesArsenal() {
       borderGlow: 'hover:border-indigo-500/80 hover:shadow-indigo-500/20',
       badge: 'Multi-Cam & Pacing',
       icon: Video,
+      logoImg: '/apps/Adobe_Premiere_Pro_CC_icon.svg.webp',
       metric: 'Expert Editor',
     },
     {
@@ -58,6 +60,7 @@ export default function InteractiveServicesArsenal() {
       borderGlow: 'hover:border-violet-500/80 hover:shadow-violet-500/20',
       badge: '3D VFX Engine',
       icon: Sparkles,
+      logoImg: '/apps/Adobe_After_Effects_CC_icon.svg.webp',
       metric: 'VFX Specialist',
     },
     {
@@ -68,6 +71,7 @@ export default function InteractiveServicesArsenal() {
       borderGlow: 'hover:border-cyan-500/80 hover:shadow-cyan-500/20',
       badge: 'High CTR Design',
       icon: ImageIcon,
+      logoImg: '/apps/Photoshop_CC_icon.png',
       metric: 'Visual Artist',
     },
     {
@@ -78,6 +82,7 @@ export default function InteractiveServicesArsenal() {
       borderGlow: 'hover:border-rose-500/80 hover:shadow-rose-500/20',
       badge: 'Shorts & TikTok',
       icon: Scissors,
+      logoImg: '/apps/capsutt......png',
       metric: 'Viral Pacing',
     },
     {
@@ -88,6 +93,7 @@ export default function InteractiveServicesArsenal() {
       borderGlow: 'hover:border-emerald-500/80 hover:shadow-emerald-500/20',
       badge: 'Neural AI Tech',
       icon: Cpu,
+      logoImg: '/apps/ai  creative......png',
       metric: 'AI Assistant',
     },
   ];
@@ -211,14 +217,13 @@ export default function InteractiveServicesArsenal() {
                 />
 
                 <div>
-                  {/* Icon */}
-                  <div className="relative w-14 h-14 mx-auto rounded-2xl bg-stone-950 border border-stone-800 group-hover:border-orange-500/50 flex items-center justify-center mb-3 shadow-inner group-hover:scale-110 transition-transform duration-300">
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${tool.color} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white`}
-                    >
-                      <Icon className="w-7 h-7" />
-                    </div>
-                    <Icon className="w-7 h-7 text-orange-400 group-hover:opacity-0 transition-opacity" />
+                  {/* App Official Logo */}
+                  <div className="relative w-14 h-14 mx-auto rounded-2xl bg-stone-950 border border-stone-800 group-hover:border-orange-500/60 p-2 flex items-center justify-center mb-3 shadow-inner group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(249,115,22,0.3)] transition-all duration-300">
+                    <img
+                      src={tool.logoImg}
+                      alt={tool.name}
+                      className="w-full h-full object-contain filter drop-shadow-md group-hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
 
                   <h4 className="font-black text-white text-xs sm:text-sm text-center group-hover:text-orange-400 transition">
