@@ -183,6 +183,17 @@ export const YOUTUBE_CHANNELS: YouTubeChannel[] = [
 export const VIDEOS_AND_REELS: ProjectItem[] = [
   {
     id: 'v1',
+    title: 'فيديو برومو Rooyai Coder السينمائي',
+    category: 'video',
+    categoryLabel: 'فيديو أصلي (MP4)',
+    image: '/photos/photo_5776382129091580286_y.jpg',
+    videoUrl: '/videos/rooyai-coder.mp4',
+    description: 'إنتاج ومونتاج فيديو ترويجي سينمائي متكامل لمنصة Rooyai Coder مدته دقيقة ونصف مع مؤثرات صوتية وبصرية وهندسة ألوان دقيقة وسرد بصري احترافي.',
+    software: ['Premiere Pro', 'After Effects', 'DaVinci Resolve'],
+    isCreativityShowcase: true,
+  },
+  {
+    id: 'v2',
     title: 'فيديو يوتيوب كامل سينمائي عالي الجودة',
     category: 'video',
     categoryLabel: 'فيديو يوتيوب كامل',
@@ -193,7 +204,7 @@ export const VIDEOS_AND_REELS: ProjectItem[] = [
     isCreativityShowcase: true,
   },
   {
-    id: 'v2',
+    id: 'v3',
     title: 'مونتاج شورتس سينمائي سريع (YouTube Short)',
     category: 'short',
     categoryLabel: 'شورتس / ريلز',
@@ -204,7 +215,7 @@ export const VIDEOS_AND_REELS: ProjectItem[] = [
     isCreativityShowcase: true,
   },
   {
-    id: 'v3',
+    id: 'v4',
     title: 'مونتاج شورتس ديناميكي بتأثيرات حركية وكابشنز',
     category: 'short',
     categoryLabel: 'شورتس / ريلز',
@@ -215,7 +226,7 @@ export const VIDEOS_AND_REELS: ProjectItem[] = [
     isCreativityShowcase: true,
   },
   {
-    id: 'v4',
+    id: 'v5',
     title: 'يوتيوب شورتس بهندسة صوتية ومؤثرات SFX محيطية',
     category: 'short',
     categoryLabel: 'شورتس / ريلز',
@@ -225,7 +236,7 @@ export const VIDEOS_AND_REELS: ProjectItem[] = [
     software: ['Premiere Pro', 'Audition'],
   },
   {
-    id: 'v5',
+    id: 'v6',
     title: 'شورتس يوتيوب سريع مع تحريك نصوص وجرافيكس',
     category: 'short',
     categoryLabel: 'شورتس / ريلز',
@@ -235,7 +246,7 @@ export const VIDEOS_AND_REELS: ProjectItem[] = [
     software: ['CapCut Pro', 'Premiere Pro'],
   },
   {
-    id: 'v6',
+    id: 'v7',
     title: 'ريلز إنستغرام إبداعي للمؤثرين والحسابات الكبرى',
     category: 'promo',
     categoryLabel: 'إنستغرام ريلز',
@@ -245,7 +256,7 @@ export const VIDEOS_AND_REELS: ProjectItem[] = [
     software: ['Premiere Pro', 'After Effects'],
   },
   {
-    id: 'v7',
+    id: 'v8',
     title: 'ريلز إنستغرام ترويجي عالي الاحترافية',
     category: 'promo',
     categoryLabel: 'إنستغرام ريلز',
@@ -255,7 +266,7 @@ export const VIDEOS_AND_REELS: ProjectItem[] = [
     software: ['After Effects', 'Premiere Pro'],
   },
   {
-    id: 'v8',
+    id: 'v9',
     title: 'مونتاج شورتس قصصي درامي مشوق',
     category: 'short',
     categoryLabel: 'شورتس / ريلز',
@@ -265,7 +276,7 @@ export const VIDEOS_AND_REELS: ProjectItem[] = [
     software: ['Premiere Pro', 'After Effects'],
   },
   {
-    id: 'v9',
+    id: 'v10',
     title: 'يوتيوب شورتس إبداعي مع زوايا تصوير وتلوين سينمائي',
     category: 'short',
     categoryLabel: 'شورتس / ريلز',
@@ -274,20 +285,10 @@ export const VIDEOS_AND_REELS: ProjectItem[] = [
     description: 'مونتاج شورتس مع تلوين سينمائي وتصحيح درجات الإضاءة لتوفير تجربة بصرية مريحة وجذابة.',
     software: ['DaVinci Resolve', 'Premiere Pro'],
   },
-  {
-    id: 'v10',
-    title: 'أرشيف مشاريع المونتاج والتصاميم السحابية (Google Drive)',
-    category: 'brand',
-    categoryLabel: 'مشاريع Drive',
-    image: '/photos/photo_5776382129091580286_y.jpg',
-    videoUrl: 'https://drive.google.com/drive/folders/1xexSP-NX2pkU_s1eVv50ZrDDVw59HWLy?usp=sharing',
-    description: 'مجلد سحابي متكامل يضم نماذج متنوعة من الفيديوهات والمشاريع الكاملة بجودة أصلية Raw & Rendered.',
-    software: ['Premiere Pro', 'After Effects', 'DaVinci'],
-  },
 ];
 
 // ──────────────────────────────────────────────────────────────
-// 2. POST DESIGNS (10 تصاميم بوسترات وحملات إعلانية)
+// 2. POST DESIGNS (18 تصميم بوستر إعلاني وتسويقي)
 // ──────────────────────────────────────────────────────────────
 export const POST_DESIGNS: ProjectItem[] = [
   {
@@ -322,6 +323,16 @@ export const POST_DESIGNS: ProjectItem[] = [
   },
   {
     id: 'p4',
+    title: 'بوستر إعلاني لحملة n8n Hosting السنوية',
+    category: 'post-design',
+    categoryLabel: 'Post Design // إعلاني',
+    image: '/photos/photo_5776382129091580286_y.jpg',
+    description: 'تصميم بوستر إعلاني مخصص لعرض الباقة السنوية لاستضافة n8n (Annual Offer) بقيمة 1199 جنيه مع دمج عناصر ثلاثية الأبعاد ونيون متوهج.',
+    software: ['Photoshop'],
+    isCreativityShowcase: true,
+  },
+  {
+    id: 'p5',
     title: 'بوستر إعلاني لحملة اشتغل أقل وانجز أكثر - شخصية Boo',
     category: 'post-design',
     categoryLabel: 'Post Design // إعلاني',
@@ -330,7 +341,7 @@ export const POST_DESIGNS: ProjectItem[] = [
     software: ['Photoshop'],
   },
   {
-    id: 'p5',
+    id: 'p6',
     title: 'بوستر إعلاني - حقيبة موديلات الذكاء الاصطناعي ROOYALLM',
     category: 'post-design',
     categoryLabel: 'Post Design // AI Promo',
@@ -339,7 +350,7 @@ export const POST_DESIGNS: ProjectItem[] = [
     software: ['Photoshop'],
   },
   {
-    id: 'p6',
+    id: 'p7',
     title: 'بوستر إعلاني لحملة وفر فلوسك - اشتراك n8n الاقتصادي',
     category: 'post-design',
     categoryLabel: 'Post Design // تسويقي',
@@ -349,7 +360,7 @@ export const POST_DESIGNS: ProjectItem[] = [
     isCreativityShowcase: true,
   },
   {
-    id: 'p7',
+    id: 'p8',
     title: 'بوستر إعلاني - عرض سنوي n8n أوفر كتير سنة كلها شغل',
     category: 'post-design',
     categoryLabel: 'Post Design // إعلاني',
@@ -359,7 +370,7 @@ export const POST_DESIGNS: ProjectItem[] = [
     isCreativityShowcase: true,
   },
   {
-    id: 'p8',
+    id: 'p9',
     title: 'بوستر إعلاني مبتكر - احجزني عشان غيرك عايزني',
     category: 'post-design',
     categoryLabel: 'Post Design // إبداعي',
@@ -369,7 +380,7 @@ export const POST_DESIGNS: ProjectItem[] = [
     isCreativityShowcase: true,
   },
   {
-    id: 'p9',
+    id: 'p10',
     title: 'بوستر سوشيال ميديا - سرقت انتباهك بثانية واحدة',
     category: 'post-design',
     categoryLabel: 'Post Design // Social Media',
@@ -378,7 +389,7 @@ export const POST_DESIGNS: ProjectItem[] = [
     software: ['Photoshop'],
   },
   {
-    id: 'p10',
+    id: 'p11',
     title: 'تصميم بوستر موبايل - بديل هوستنجر الأقوى Rooyai',
     category: 'post-design',
     categoryLabel: 'Post Design // Mobile Story',
@@ -386,10 +397,73 @@ export const POST_DESIGNS: ProjectItem[] = [
     description: 'تصميم ستوري وبوستر رقمي رأسي لعرض واجهة منصة Rooyai وإمكانيات تشغيل تطبيقات ونماذج الذكاء الاصطناعي بدون قيود.',
     software: ['Photoshop'],
   },
+  {
+    id: 'p12',
+    title: 'بوستر تسويقي - ليه تشيل هم الشغل؟ (أبو الهول بنظارات ذكية)',
+    category: 'post-design',
+    categoryLabel: 'Post Design // تسويقي',
+    image: '/post-designs/post_1.png',
+    description: 'تصميم بوستر إعلاني مبتكر يدمج تمثال أبو الهول بالنظارات الرقمية مع عرض n8n السنوي 1199 جنيه والدفع بالجنيه المصري وسيرفرات مستقرة.',
+    software: ['Photoshop'],
+  },
+  {
+    id: 'p13',
+    title: 'بوستر إعلاني - باقات السيرفرات والأتمتة الذكية Rooyai',
+    category: 'post-design',
+    categoryLabel: 'Post Design // إعلاني',
+    image: '/post-designs/post_2.png',
+    description: 'تصميم بوستر يوضح مميزات استضافة n8n مع الدعم الفني 24/7 والتفعيل الفوري وسيرفرات فائقة السرعة.',
+    software: ['Photoshop'],
+  },
+  {
+    id: 'p14',
+    title: 'بوستر سوشيال ميديا - مميزات الاستضافة السحابية والـ AI',
+    category: 'post-design',
+    categoryLabel: 'Post Design // سوشيال ميديا',
+    image: '/post-designs/post_3.png',
+    description: 'تصميم إنفوجرافيك وبوستر سوشيال ميديا بألوان وهوية بصرية متناسقة لمنصة Rooyai.',
+    software: ['Photoshop'],
+  },
+  {
+    id: 'p15',
+    title: 'بوستر إعلاني - حلول أتمتة الأعمال للشركات ورواد الأعمال',
+    category: 'post-design',
+    categoryLabel: 'Post Design // Business',
+    image: '/post-designs/post_4.png',
+    description: 'تصميم بوستر ترويجي موجه لرواد الأعمال وأصحاب المشاريع لتقليل تكاليف التشغيل عبر الـ Workflows.',
+    software: ['Photoshop'],
+  },
+  {
+    id: 'p16',
+    title: 'بوستر إعلاني - نماذج الذكاء الاصطناعي المدمجة',
+    category: 'post-design',
+    categoryLabel: 'Post Design // AI Tech',
+    image: '/post-designs/post_5.png',
+    description: 'تصميم عصري مع تأثيرات إضاءة متوهجة تبرز سهولة استخدام نماذج AI عبر واجهة برمجية موحدة.',
+    software: ['Photoshop'],
+  },
+  {
+    id: 'p17',
+    title: 'بوستر ترويجي - عروض الصيف والخصومات الحصرية',
+    category: 'post-design',
+    categoryLabel: 'Post Design // Promo',
+    image: '/post-designs/post_6.png',
+    description: 'تصميم بوستر تسويقي لحملات الخصومات الحصرية مع إبراز أزرار الدعوة لاتخاذ إجراء (Call to Action).',
+    software: ['Photoshop'],
+  },
+  {
+    id: 'p18',
+    title: 'بوستر سوشيال ميديا - منصة المستقبل الذكية Rooyai',
+    category: 'post-design',
+    categoryLabel: 'Post Design // Branding',
+    image: '/post-designs/post_7.png',
+    description: 'تصميم بوستر هوية بصرية يجمع بين التقنية الحديثة والبساطة لعرض خدمات الاستضافة والذكاء الاصطناعي.',
+    software: ['Photoshop'],
+  },
 ];
 
 // ──────────────────────────────────────────────────────────────
-// 3. YOUTUBE THUMBNAILS (7 صور مصغرة لليوتيوب)
+// 3. YOUTUBE THUMBNAILS (15 صورة مصغرة لليوتيوب)
 // ──────────────────────────────────────────────────────────────
 export const YOUTUBE_THUMBNAILS: ProjectItem[] = [
   {
@@ -458,6 +532,78 @@ export const YOUTUBE_THUMBNAILS: ProjectItem[] = [
     categoryLabel: 'YouTube Thumbnail',
     image: '/photos/photo_5776222588236403124_y.jpg',
     description: 'تصميم ثمبنيل يوتيوب تسويقي يبرز السعر الاقتصادي وصندوق السيرفر المتوهج مع الصواعق والنقود الطائرة لجذب المهتمين بالاستضافة.',
+    software: ['Photoshop'],
+  },
+  {
+    id: 't8',
+    title: 'تصميم ثمبنيل يوتيوب - إطلاق منصة الذكاء الاصطناعي الجديدة',
+    category: 'thumbnail',
+    categoryLabel: 'YouTube Thumbnail',
+    image: '/yt-thumbnails/yt_1.png',
+    description: 'تصميم ثمبنيل يوتيوب يجذب الانتباه مع خطوط عريضة وتأثيرات ألوان سينمائية متطابقة مع موضوع الفيديو.',
+    software: ['Photoshop'],
+  },
+  {
+    id: 't9',
+    title: 'تصميم ثمبنيل يوتيوب - أسرار أتمتة الأعمال n8n للمبتدئين',
+    category: 'thumbnail',
+    categoryLabel: 'YouTube Thumbnail',
+    image: '/yt-thumbnails/yt_2.png',
+    description: 'تصميم ثمبنيل تعليمي عالي التباين مصمم لزيادة نسبة النقر إلى الظهور CTR بين الفيديوهات المقترحة.',
+    software: ['Photoshop'],
+  },
+  {
+    id: 't10',
+    title: 'تصميم ثمبنيل يوتيوب - مقارنة السيرفرات السحابية والأداء',
+    category: 'thumbnail',
+    categoryLabel: 'YouTube Thumbnail',
+    image: '/yt-thumbnails/yt_3.png',
+    description: 'تصميم ثمبنيل يوتيوب مع مقارنة بصرية واضحة وإضاءات نيون تبرز الفروقات التقنية.',
+    software: ['Photoshop'],
+  },
+  {
+    id: 't11',
+    title: 'تصميم ثمبنيل يوتيوب - كورس الذكاء الاصطناعي العملي',
+    category: 'thumbnail',
+    categoryLabel: 'YouTube Thumbnail',
+    image: '/yt-thumbnails/yt_4.png',
+    description: 'تصميم ثمبنيل احترافي يركز على الوضوح والعناصر البصرية الجاذبة للمشاهد من النظرة الأولى.',
+    software: ['Photoshop'],
+  },
+  {
+    id: 't12',
+    title: 'تصميم ثمبنيل يوتيوب - أفضل إعدادات التداول الآلي',
+    category: 'thumbnail',
+    categoryLabel: 'YouTube Thumbnail',
+    image: '/yt-thumbnails/yt_5.png',
+    description: 'ثمبنيل يوتيوب تقني مع تباين لوني قوي ورسومات توضيحية تجذب المهتمين بالتقنية والتداول.',
+    software: ['Photoshop'],
+  },
+  {
+    id: 't13',
+    title: 'تصميم ثمبنيل يوتيوب - شرح عملي لتطبيقات الـ API',
+    category: 'thumbnail',
+    categoryLabel: 'YouTube Thumbnail',
+    image: '/yt-thumbnails/yt_6.png',
+    description: 'تصميم ثمبنيل مخصص للشروحات البرمجية والتقنية مع رموز وشاشات متوهجة.',
+    software: ['Photoshop'],
+  },
+  {
+    id: 't14',
+    title: 'تصميم ثمبنيل يوتيوب - مراجعة شاملة للأدوات الحديثة',
+    category: 'thumbnail',
+    categoryLabel: 'YouTube Thumbnail',
+    image: '/yt-thumbnails/yt_7.png',
+    description: 'تصميم ثمبنيل يوتيوب يعتمد على التعبير البصري القوي لجذب المشاهدين ورفع الـ CTR.',
+    software: ['Photoshop'],
+  },
+  {
+    id: 't15',
+    title: 'تصميم ثمبنيل يوتيوب - أسرار صناعة المحتوى الفيروسي',
+    category: 'thumbnail',
+    categoryLabel: 'YouTube Thumbnail',
+    image: '/yt-thumbnails/yt_8.png',
+    description: 'تصميم ثمبنيل يوتيوب مشوق يعتمد على إثارة الفضول مع تأثيرات بصرية جذابة.',
     software: ['Photoshop'],
   },
 ];
